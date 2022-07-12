@@ -1,0 +1,11 @@
+{
+  "name": "donda-speaking",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/aremu-smog/donda-speaking.git",
+  "author": "Aremu Smog <aremuoluwagbamila@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^9.0.2"
+  }
+}

@@ -1,6 +1,9 @@
-var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
-var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+import { updateCounter } from "./firebase"
+import { startChanting, stopChanting, comeToLife } from "./animation"
+
+const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+const SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
 var donda_list = ["thunder", "dun da", "dunda", "donda"]
 var grammar = "#JSGF V1.0; grammar donda_list; public <donda> = " + donda_list.join(" | ") + " ;"
@@ -14,9 +17,15 @@ recognition.lang = "en-US"
 recognition.interimResults = false
 recognition.maxAlternatives = 1
 
-document.body.onclick = function () {
-  recognition.start()
-  console.log("Say Donda")
+export const praiseGod = () => {
+  const jail = document.querySelector(".jail")
+  jail.addEventListener("click", () => {
+    recognition.start()
+
+    comeToLife(1)
+
+    console.log("Start chanting")
+  })
 }
 
 recognition.onresult = function (event) {
@@ -26,28 +35,42 @@ recognition.onresult = function (event) {
 
   const dondaMentions = resultFromSpeech.match(dondaOptions)
 
-  const noOfDondaMentions = dondaMentions.length
+  if (dondaMentions) {
+    const noOfDondaMentions = dondaMentions.length || 0
 
-  console.log(noOfDondaMentions)
-
-  // Do firebase stuffs here
+    console.log(noOfDondaMentions)
+    updateCounter(noOfDondaMentions)
+  } else {
+    console.log("Result not matched")
+  }
 }
 
-const BREAK_TIME = 5000
+const BREAK_TIME = 2000
+
+recognition.onsoundstart = function () {
+  startChanting()
+}
 recognition.onspeechend = function () {
   recognition.stop()
+  comeToLife(0.3)
+  stopChanting()
   console.log(`Take a deep breath and get back to it in ${BREAK_TIME} milliseconds`)
 
   setTimeout(() => {
     console.log("Keep going")
     recognition.start()
+    comeToLife(1)
   }, BREAK_TIME)
 }
 
 recognition.onnomatch = function (event) {
+  stopChanting()
+  comeToLife(0.3)
   console.log("Not Donda")
 }
 
 recognition.onerror = function (event) {
+  comeToLife(0.3)
+  stopChanting()
   console.log(event.error)
 }
