@@ -12,6 +12,5 @@ let offTheGrid = setInterval(function () {
 const signInButton = document.querySelector(".sign-in")
 signInButton.addEventListener("click", e => {
 	e.preventDefault()
-	alert("Sign me in!")
 	signUserInAndOut()
 })
