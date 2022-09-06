@@ -6,6 +6,10 @@
   "author": "Aremu Smog <aremuoluwagbamila@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "firebase": "^9.0.2"
+    "firebase": "^9.0.2",
+    "parcel": "^2.7.0"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
   }
 }
