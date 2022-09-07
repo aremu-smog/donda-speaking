@@ -108,14 +108,6 @@ h1 .counter {
 		transform: translateX(calc(-100% - var(--gap)));
 	}
 }
-@keyframes hurricane_right {
-	from {
-		transform: translateX(-50%);
-	}
-	to {
-		transform: translateX(0%);
-	}
-}
 
 h3.counter {
 	color: var(--donda-white);
