@@ -100,6 +100,18 @@ h1 .counter {
 	color: var(--donda-white);
 }
 
+.counter.god__breathed {
+	animation: moon 3s ease-in-out infinite alternate;
+}
+
+@keyframes moon {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0.3;
+	}
+}
 @keyframes hurricane {
 	from {
 		transform: translateX(0%);
