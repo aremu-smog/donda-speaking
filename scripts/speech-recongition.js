@@ -1,5 +1,6 @@
 import { updateCounter } from "./firebase"
 import { startChanting, stopChanting, comeToLife } from "./animation"
+import { believeWhatIsay, signInButton } from "./microphone"
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -22,14 +23,11 @@ recognition.interimResults = false
 recognition.maxAlternatives = 1
 
 export const praiseGod = () => {
-	const jail = document.querySelector(".jail")
-	jail.addEventListener("click", () => {
-		recognition.start()
+	recognition.start()
 
-		comeToLife(1)
-
-		console.log("Start chanting")
-	})
+	signInButton.innerText = "🗣 Start Speaking"
+	signInButton.disabled = "disabled"
+	comeToLife(1)
 }
 
 recognition.onresult = function (event) {
@@ -49,7 +47,7 @@ recognition.onresult = function (event) {
 	}
 }
 
-const BREAK_TIME = 2000
+const BREAK_TIME = 4000
 
 recognition.onsoundstart = function () {
 	startChanting()
@@ -58,12 +56,13 @@ recognition.onspeechend = function () {
 	recognition.stop()
 	comeToLife(0.3)
 	stopChanting()
-	console.log(
-		`Take a deep breath and get back to it in ${BREAK_TIME} milliseconds`
-	)
+
+	signInButton.innerText = `🧘🏼‍♀️ Take a deep breath and get back to it in ${
+		BREAK_TIME / 1000
+	}s`
 
 	setTimeout(() => {
-		console.log("Keep going")
+		signInButton.innerText = "🙌🏽🗣   Keep going..."
 		recognition.start()
 		comeToLife(1)
 	}, BREAK_TIME)

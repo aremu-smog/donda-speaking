@@ -26,7 +26,22 @@ a {
 	color: var(--donda-gray);
 }
 
-a:hover {
+button {
+	background: transparent;
+	outline: none;
+	font-size: inherit;
+	border: none;
+	color: var(--donda-gray);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+a:hover,
+button:hover {
+	text-decoration: none;
+}
+
+button:disabled {
 	text-decoration: none;
 }
 
@@ -139,6 +154,10 @@ h3.counter {
 	display: inline-block;
 	margin-right: 10px;
 	font-size: 5vh;
+}
+
+.main-nav.stacked ol li {
+	display: block;
 }
 
 @media screen and (max-width: 768px) {

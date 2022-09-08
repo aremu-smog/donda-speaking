@@ -16,12 +16,8 @@ export const checkIfUserAuthenticated = () => {
 	const user = auth.currentUser
 
 	if (user) {
-		if (user.email === process.env.AUTHORIZED_USER) {
-			praiseGod()
-			signInButton.innerText = user.displayName
-		} else {
-			window.location.href = "index.html"
-		}
+		praiseGod()
+		signInButton.innerText = user.displayName
 	} else {
 	}
 }
