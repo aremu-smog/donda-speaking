@@ -63,10 +63,10 @@ recognition.onspeechend = function () {
 
 	let timeLeft = TIME_IN_SEC
 
-	signInButton.innerText = `🧘🏼‍♀️ Take a deep breath and get back to it in ${timeLeft}s`
+	signInButton.innerText = `🧘🏼‍♀️ CHILLAX, and get back to it in ${timeLeft}s`
 	let timer = setInterval(() => {
 		timeLeft--
-		signInButton.innerText = `🧘🏼‍♀️ Take a deep breath and get back to it in ${timeLeft}s`
+		signInButton.innerText = `🧘🏼‍♀️ CHILLAX, and get back to it in ${timeLeft}s`
 		if (timeLeft === 0) {
 			timeLeft = TIME_IN_SEC
 			clearInterval(timer)
@@ -74,7 +74,7 @@ recognition.onspeechend = function () {
 	}, ONE_SEC)
 
 	setTimeout(() => {
-		signInButton.innerText = "🙌🏽🗣   Keep going..."
+		signInButton.innerText = "🙌🏽🗣 Keep going..."
 		recognition.start()
 		comeToLife(1)
 	}, BREAK_TIME)
@@ -89,5 +89,7 @@ recognition.onnomatch = function (event) {
 recognition.onerror = function (event) {
 	comeToLife(0.3)
 	stopChanting()
-	console.log(event.error)
+	signInButton.innerText = "🕺💃 Get Started"
+	signInButton.disabled = ""
+	console.log("Error", event.error)
 }
