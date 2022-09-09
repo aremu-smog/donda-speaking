@@ -20,13 +20,11 @@ signInButton.addEventListener("click", e => {
 export const believeWhatIsay = howLong => {
 	const ONE_SEC = 1000
 	let timeInSec = howLong / ONE_SEC
-	let timer = setTimeout(() => {
-		if (timeInSec === 0) {
-			clearTimeout(timer)
-		}
-
-		timeInSec = timeInSec - 1
-	}, ONE_SEC)
-
 	console.log(timeInSec)
+	// let timer = setInterval(() => {
+	// 	console.log(timeInSec)
+	// 	timeInSec--
+	// }, ONE_SEC)
+
+	// return timer
 }

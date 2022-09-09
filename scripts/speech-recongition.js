@@ -49,6 +49,8 @@ recognition.onresult = function (event) {
 
 const BREAK_TIME = 4000
 
+const ONE_SEC = 1000
+
 recognition.onsoundstart = function () {
 	startChanting()
 }
@@ -57,9 +59,19 @@ recognition.onspeechend = function () {
 	comeToLife(0.3)
 	stopChanting()
 
-	signInButton.innerText = `🧘🏼‍♀️ Take a deep breath and get back to it in ${
-		BREAK_TIME / 1000
-	}s`
+	const TIME_IN_SEC = BREAK_TIME / ONE_SEC
+
+	let timeLeft = TIME_IN_SEC
+
+	signInButton.innerText = `🧘🏼‍♀️ Take a deep breath and get back to it in ${timeLeft}s`
+	let timer = setInterval(() => {
+		timeLeft--
+		signInButton.innerText = `🧘🏼‍♀️ Take a deep breath and get back to it in ${timeLeft}s`
+		if (timeLeft === 0) {
+			timeLeft = TIME_IN_SEC
+			clearInterval(timer)
+		}
+	}, ONE_SEC)
 
 	setTimeout(() => {
 		signInButton.innerText = "🙌🏽🗣   Keep going..."
