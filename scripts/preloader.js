@@ -1,6 +1,6 @@
 const preloader = document.querySelector(".preloader")
 const preloaderText = document.querySelector(".preloader__text")
-const preloaderTextSpan = document.querySelector(".preloader__text span")
+const preloaderTextSpan = preloaderText.children[0]
 
 document.addEventListener("readystatechange", () => {
 	switch (document.readyState) {

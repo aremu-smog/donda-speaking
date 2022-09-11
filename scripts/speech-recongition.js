@@ -7,7 +7,15 @@ var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent =
 	SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
-var donda_list = ["thunder", "dun da", "dunda", "donda"]
+var donda_list = [
+	"thunder",
+	"dun da",
+	"dunda",
+	"donda",
+	"don't that",
+	"don't they",
+	"don't die",
+]
 var grammar =
 	"#JSGF V1.0; grammar donda_list; public <donda> = " +
 	donda_list.join(" | ") +
@@ -37,6 +45,7 @@ recognition.onresult = function (event) {
 
 	const dondaMentions = resultFromSpeech.match(dondaOptions)
 
+	console.log(resultFromSpeech)
 	if (dondaMentions) {
 		const noOfDondaMentions = dondaMentions.length || 0
 
